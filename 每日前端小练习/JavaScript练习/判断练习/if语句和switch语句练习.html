@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1.判断时间
+        var time = prompt('请问现在几点了？');
+        if (time >= 6 && time <= 12)
+            alert('上午好');
+        else if (time >= 13 && time <= 18)
+            alert('下午好');
+        else if (time >= 19 && time <= 23)
+            alert('晚上好');
+        else if (time >= 0 && time <= 5)
+            alert('这是休息时间，不要说话！');
+        // 2.比较两个数的最大值
+        var a = prompt('请输入一个数：');
+        var b = prompt('请输入一个数：');
+        if (a > b)
+            alert('最大值为' + a)
+        else
+            alert('最大值为：' + b)
+        // 3.判断奇偶
+        var c = prompt('请输入一个数：');
+        if (c % 2 == 0)
+            alert('这个数为：偶数')
+        else
+            alert('这个数为奇数')
+        // 4.判断星期
+        var dayTime = prompt('请输入日期数：');
+        switch (dayTime % 7) {
+            case 1:
+                alert('星期一'); break;
+            case 2:
+                alert('星期二'); break;
+            case 3:
+                alert('星期三'); break;
+            case 4:
+                alert('星期四'); break;
+            case 5:
+                alert('星期五'); break;
+            case 6: ;
+                alert('星期六'); break;
+            case 0:
+                alert('星期日'); break;
+        }
+        
+     
+        // 5.成绩表
+        var score = prompt('输入一个分数：');
+        switch (parseInt(score/10)) {
+            case 9:
+                alert('A'); break;
+            case 8:
+                alert('B'); break;
+            case 7:
+                alert('C'); break;
+            case 6:
+                alert('D'); break;
+            default:
+                alert('E');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
