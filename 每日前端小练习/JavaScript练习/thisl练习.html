@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 创建一个计算器
+        let calculator = {
+
+            read() {
+                // +号转化为数字
+                this.a=+prompt("a?",0);
+                this.b=+prompt("b?",0);
+            },
+            sum() {
+                return this.a+this.b;
+            },
+            mul() {
+                return this.a*this.b;
+            }
+        };
+        calculator.read();
+        alert(calculator.sum());
+        alert(calculator.mul());
+        
+
+        calculator.read();
+        alert(calculator.sum());
+        alert(calculator.mul());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
