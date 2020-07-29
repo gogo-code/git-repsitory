@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 解决6.35精度损失问题
+        alert(6.35.toFixed(1)); //6.3
+        alert(6.35.toFixed(20)); // 6.34999999999999964473
+        alert(Math.round(6.35 * 10) / 10);
+        // 重复输入一个数，直到输入的数为数字
+        function readNumber() {
+            let num;
+
+            do {
+                num = prompt("Enter a number please?", 0);
+            } while (!isFinite(num));
+
+            if (num === null || num === '') return null;
+
+            return +num;
+        }
+
+        alert(`Read: ${readNumber()}`);
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
