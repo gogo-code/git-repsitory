@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 首字母大写
+        function ucFirst(str) {
+            /* 不能替换第一个字符串，js中字符串是不可变的,只可读
+            str[0]=str[0].toUpperCase;
+            return str; */
+            // 可以根据已有字符串创建一个新的字符串
+            let newstr = str[0].toUpperCase() + str.slice(1);
+            return newstr;
+        }
+        alert(ucFirst("john"));
+        // 检查spam
+        function checkSpam(str) {
+            // 先把把字母转换为小写
+            let lowerStr = str.toLowerCase();
+            if (lowerStr.indexOf('viagra') != -1 || lowerStr.indexOf('xxx') != -1)
+                return true;
+            return false;
+        }
+        alert(checkSpam("innocent rabbit"));
+        // 截断文本
+        function truncate(str, maxlength) {
+            return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '…': str;
+            
+        }
+        alert(truncate("What I'd like to tell on this topic is:", 20));
+        // 提取货币
+        function extractCurrencyValue(str) {
+            let newStr=str.slice(1);
+            return +newStr;
+        }
+        alert( extractCurrencyValue('$120') === 120 ); 
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
