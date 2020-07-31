@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="box">
+            <img src="images/tao.png" alt="">
+            <i class="close-btn">×</i>
+        </div>
+        <script>
+            let btn=document.querySelector('.close-btn');
+            let box=document.querySelector('.box');
+            btn.onclick=function() {
+                box.style.display='none';
+            }
+        </script>
+</body>
+</html>
