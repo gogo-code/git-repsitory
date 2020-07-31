@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 数组去重
+        function unique(arr) {
+            //Array.from 方法接受对象，检查它是一个可迭代对象或类数组对象，然后创建一个新数组，并将该对象的所有元素复制到这个新数组。
+            return Array.from(new Set(arr));
+        }
+        let values = ["Hare", "Krishna", "Hare", "Krishna",
+            "Krishna", "Krishna", "Hare", "Hare", ":-O"
+        ];
+        alert(unique(values));
+        // 过滤字谜
+        // 字谜是具有相同数量相同字母但是顺序不同的单词
+        function aclean(arr) {
+            /* let map = new Map();
+            for (let word of arr) {
+                let sorted = word.toLowerCase().split('').sort().join('');
+                map.set(sorted, word);
+            }
+            return Array.from(map.values());
+            或者 */
+            let obj = {};
+            for (let i = 0; i < arr.length; i++) {
+                let sorted = arr[i].toLowerCase().split('').sort().join('');
+                obj[sorted] = arr[i];
+            }
+            return Array.from(Object.values(obj));
+
+        }
+        let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+        alert(aclean(arr)); // "nap,teachers,ear" or "PAN,cheaters,era"
+        // 迭代键
+        let map = new Map();
+        map.set("name", "John");
+        let keys = Array.from(map.keys());//map.keys()返回的是可迭代对象而非数组需要使用Array.from转换为数组
+        keys.push("more");
+        alert(keys); // name, more
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
