@@ -26,6 +26,19 @@
         ul {
             margin-top: 50px;
         }
+
+        li {
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(245, 209, 243);
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        li a {
+            float: right;
+        }
     </style>
 </head>
 
@@ -43,9 +56,17 @@
                 return false;
             } else {
                 let li = document.createElement('li');
-                li.innerHTML = text.value;
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";//阻止链接跳转
+                
                 // ul.appendChild(li);
                 ul.insertBefore(li, ul.children[0]);
+                let as=document.querySelectorAll('a');
+                for (let i = 0; i < as.length; i++) {
+                    as[i].onclick=function() {
+                        // 删除li
+                        ul.removeChild(this.parentNode);
+                    }
+                }
             }
         }
     </script>
