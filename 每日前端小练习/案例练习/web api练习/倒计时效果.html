@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 200px;
+        }
+
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="day">0</span>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        let day = document.querySelector('.day');
+        let hour = document.querySelector('.hour');
+        let minute = document.querySelector('.minute');
+        let second = document.querySelector('.second');
+        let inputTime = +new Date('2020-9-1 18:00:00');
+        count();//先调用一次
+        setInterval(count, 1000);
+        function count() {
+            let nowTime = +new Date();
+            let times = (inputTime - nowTime) / 1000;//转化为秒数
+            let d = parseInt(times / 60 / 60 / 24);
+            day.innerHTML = d;
+            let h = parseInt(times / 60 / 60 % 24);//parseInt转化为整数
+            hour.innerHTML = h;
+            let m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            let s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+
+</html>

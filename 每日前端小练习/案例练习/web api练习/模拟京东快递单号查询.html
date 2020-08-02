@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="search">
+        <div class="con">123</div>
+        <input type="text" placeholder="请输入您的快递单号" class="jd">
+    </div>
+    <script>
+        let con=document.querySelector('.con');
+        let jd_input=document.querySelector('.jd');
+        jd_input.addEventListener('keyup',function(){
+            if(this.value=='') {
+                con.style.display='none';
+            } else {
+                con.style.display='block';
+                con.innerText=this.value;
+            }
+        })
+        jd_input.addEventListener('blur',function() {
+            con.style.display='none';
+        })
+        jd_input.addEventListener('focus',function() {
+            if(this.value!= '') {
+                con.style.display='block';
+            }
+        })
+    </script>
+</body>
+</html>
