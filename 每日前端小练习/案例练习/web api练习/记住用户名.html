@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <input type="text" id="username">
     <input type="checkbox" id="remenber">记住用户名
     <script>
-        let username=document.querySelector('#username');
-        let remmenber=document.querySelector('#remenber');
-        if(localStorage.getItem('username')) {
-            username.value=localStorage.getItem('username');
-            remmenber.checked=true;
+        let username = document.querySelector('#username');
+        let remmenber = document.querySelector('#remenber');
+        if (localStorage.getItem('username')) {          //如果本地存储的数据不是空就将数据显示在输入框，并checked
+            username.value = localStorage.getItem('username');
+            remmenber.checked = true;
         }
-        remmenber.addEventListener('change',function() {
-            if(this.checked) {
-                localStorage.setItem('username',username.value)
+        remmenber.addEventListener('change', function () {
+            if (this.checked) {
+                localStorage.setItem('username', username.value)  //存储数据
             } else {
-                localStorage.removeItem('username');
+                localStorage.removeItem('username');    //消除数据
             }
         })
     </script>
 </body>
+
 </html>
