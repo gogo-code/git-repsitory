@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="btn1Click()">按钮1</button>
+        <button @click="btn1Click">按钮1</button>
+        <button @click="btn2Click">按钮2</button>
+        <!-- 在调用方式, 如何手动的获取到浏览器参数的event对象: $event-->
+        <button @click="btn3Click(abc,$event)">按钮3</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: '你好啊',
+                abc: 'coderwhy'
+            },
+            methods: {
+                btn1Click() {
+                    console.log("btn1Click");
+                },
+                btn2Click(e) {
+                    console.log('---', e)
+                },
+                btn3Click(abc, event) {
+                    console.log('---', abc, event)
+                }
+
+            },
+
+        })
+
+    </script>
+</body>
+
+</html>

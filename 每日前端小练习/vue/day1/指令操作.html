@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2 v-once>{{message}}</h2> 
+        <h2 v-html="url"></h2>
+        <h2 v-text="message">，gogo</h2>
+        <h2 v-pre>{{message}}</h2>
+    </div>
+    <div id="app2" v-cloak>
+            <h2>{{message}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app =new Vue({
+            el:'#app',
+            data: {
+                message:'你好啊',
+                url:'<a href="http://baidu.com">百度一下</a>'
+                
+            }
+        })
+        setTimeout(() => {
+            const app2 =new Vue({
+                el:'#app2',
+                data:{
+                    message:'hello'
+                }
+            })
+        }, 1000);
+
+    </script>
+</body>
+</html>
