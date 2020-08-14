@@ -16,6 +16,13 @@ export default {
     return {
 
     }
+  },
+  activated() {
+    this.$router.push(this.path);
+  },
+  beforeRouteLeave (to, from, next) {
+    this.path=this.$route.path
+    next()
   }
 }
 </script>
