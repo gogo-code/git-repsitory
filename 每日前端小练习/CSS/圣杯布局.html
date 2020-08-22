@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- 思路：先给中间div设置左右padding，然后给所有子标签浮动，中间子标签设置全宽度，左右子标签设置margin-left值使得三个标签位于同一高度，为了防止覆盖中间子标签
+设置相对定位，给定left和right值填充左右边框 -->
+<body>
+  <div class="hd">header</div>
+  <div class="bd">
+    <div class="middle">middle</div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+  <div class="footer">footer</div>
+</body>
+<style>
+  .hd {
+    height: 50px;
+    background: #666;
+    text-align: center;
+  }
+
+  .bd {
+    padding: 0 200px 0 180px;
+    height: 100px;
+  }
+
+  .middle {
+    float: left;
+    width: 100%;
+    height: 100px;
+    background: blue;
+
+  }
+
+  .left {
+    float: left;
+    width: 180px;
+    height: 100px;
+    margin-left: -100%;
+    background: #00cc99;
+    position: relative;
+
+    left: -180px;
+  }
+
+  .right {
+    float: left;
+    width: 200px;
+    height: 100px;
+    margin-left: -200px;
+    background: #00cc99;
+    position: relative;
+    right: -200px;
+  }
+  .footer {
+    height: 50px;
+    background: #666;
+    text-align: center;
+  }
+</style>
+
+</html>
