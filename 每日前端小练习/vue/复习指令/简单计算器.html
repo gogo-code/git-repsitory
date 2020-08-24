@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>简单计数器</h2>
+  <div id="app">
+    数字a：<input type="text" v-model="a">
+    数字b: <input type="text" v-model="b">
+    <button @click="handle">add</button>
+    <!-- <div>{{result}}</div> -->
+    <!-- <div v-text="result">计算结果为：</div> -->
+    <div>计算结果为：<span v-text="result"></span></div>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue ( {
+    el:'#app',
+    data: {
+      a:'',
+      b:'',
+      result:''
+    },
+    methods: {
+      handle() {
+        this.result=parseInt(this.a)+parseInt(this.b);
+      }
+    },
+  })
+</script>
+</html>
