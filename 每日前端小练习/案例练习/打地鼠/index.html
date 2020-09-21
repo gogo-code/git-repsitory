@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打地鼠</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    h3 {
+      text-indent: 200px;
+      font-size: 50px;
+      letter-spacing: 10px;
+      margin-top: 100px;
+    }
+
+    .main {
+      width: 600px;
+      height: 600px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: aqua;
+      display: grid;
+      grid-template-columns: 200px 200px 200px;
+      grid-template-rows: 200px 200px 200px;
+    }
+
+    .main:hover {
+      cursor: url('img/hammer.ico'), auto;
+    }
+
+    .item {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .item img {
+      width: 97%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    .item .mouse {
+      width: 65%;
+    }
+
+    .item .hole {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>积分：<span class="score">0</span></h3>
+  <div class="main">
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+    <div class="item">
+      <img class="hole" src="img/hole.png" alt="">
+      <img class="mouse" src="img/mouse.png" alt="">
+      <img class="boom" src="img/boom.png" alt="">
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  let mouseLists = document.querySelectorAll(".mouse")
+  let scoreBox = document.querySelector(".score")
+  let score = 0
+
+  for (let i = 0; i < mouseLists.length; i++) {
+    //给每个老鼠绑定点击事件,当点击老鼠的时候：
+    // 1 让老鼠消失
+    // 2 让 boom 出现
+    // 3 让积分随着改变
+    mouseLists[i].onclick = function () {
+      this.style.display = "none"
+      this.parentElement.lastElementChild.style.display = "block"
+      let that = this;
+      score += 100;
+      // 260ms之后让boom自动消失
+      let timer = setTimeout(function () {
+        clearTimeout(timer)
+        timer = null;
+        that.parentElement.lastElementChild.style.display = "none"
+      }, 260)
+      scoreBox.innerHTML = score;
+    }
+
+  }
+  setInterval(() => {
+    // 随机显示位置
+    let i = Math.floor(Math.random() * 9)
+    mouseLists[i].style.display = "block"
+  }, 1000)
+</script>
