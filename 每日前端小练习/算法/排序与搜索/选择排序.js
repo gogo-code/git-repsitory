@@ -14,7 +14,7 @@ Array.prototype.selectionSort = function () {
         // 存储最小值的下标
         indexMin = j;
       }
-      如果最小下标和自身的下标相等就不需要交换
+      // 如果最小下标和自身的下标相等就不需要交换
       if(indexMin!==i){
         const temp = this[i];
         this[i] = this[indexMin];
