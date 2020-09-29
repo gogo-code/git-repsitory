@@ -13,6 +13,9 @@
         <h2>{{firstName+' '+lastName}} </h2>
         <h2>{{fistName}}{{lastName}}</h2>
         <h2>{{counter*2}}</h2>
+        <transition>
+            <span :key="text">{{ text }}</span>
+        </transition>
     </div>
     <script src="../js/vue.js"></script>
     <script>
@@ -22,7 +25,8 @@
                 message:'hello',
                 firstName:'jack',
                 lastName:'tom',
-                counter:100
+                counter:100,
+                text:'sdjf'
             }
         })
     </script>
