@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
         a+a::before {
             content: "";
             font-size: 0;
@@ -12,45 +17,61 @@
             margin-left: 6px;
             border-left: 1px solid gray;
         }
+
         /* 相邻选择符(E+F) */
-	h3 + p { color: #f00; }
-	/* 兄弟选择符(E~F) */
-	h3 ~ p { color: #f00; }
-    .father {
-        overflow: hidden;   
-    }
-    .son {
-        margin: 1em 0;
-    }
-    .add {
-        width: 100px;
-        height: 100px;
-        border:2px dashed #ccc;
-    }
-    /* .add::before,add::after {
+        h3+p {
+            color: #f00;
+        }
+
+        /* 兄弟选择符(E~F) */
+        h3~p {
+            color: #f00;
+        }
+
+        .father {
+            overflow: hidden;
+        }
+
+        .son {
+            margin: 1em 0;
+        }
+
+        .add {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #ccc;
+        }
+
+        /* .add::before,add::after {
         background: #ccc;
 
     } */
-    .add:hover {
-        border-color: #06c;
-    }
-    /* .add:hover::before,.add:hover::after {
+        .add:hover {
+            border-color: #06c;
+        }
+
+        /* .add:hover::before,.add:hover::after {
         background: #06c;
     } */
     </style>
-    <script>
-        let a=12345;
-        alert(a*10/10)
-    </script>
-</head>
-<body>
-    <a href="">登录</a><a href="">注册</a>
-    <h3>这是一个标题</h3><p>p1</p><p>p2</p><p>p3</p>
-    <div class="father">
-        <div class="son"></div>
-    </div>
-    <div class="add">
 
-    </div>
+</head>
+
+<body>
+  
+    <script>
+        let div = document.createElement('div');
+
+        div.style.overflowY = 'scroll';
+        div.style.width = '50px';
+        div.style.height = '50px';
+        div.style.backgroundColor='red'
+        // 必须将其放入文档（document）中，否则其大小将为 0
+        document.body.append(div);
+        let scrollWidth = div.offsetWidth - div.clientWidth;
+        div
+        alert(scrollWidth);
+    </script>
 </body>
+
 </html>
