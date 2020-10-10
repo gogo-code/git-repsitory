@@ -10,11 +10,11 @@ function deepClone(obj = {}) {
   } else {
     result={}
   }
-  for (const key in object) {
+  for (const key in obj) {
     // 保证key不是原型的属性
-    if (object.hasOwnProperty(key)) {
+    if (obj.hasOwnProperty(key)) {
       // 递归调用
-      result[key]=deepClone(object[key])
+      result[key]=deepClone(obj[key])
       
     }
   }
