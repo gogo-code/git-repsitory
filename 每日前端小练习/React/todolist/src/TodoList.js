@@ -23,10 +23,12 @@ class TodoList extends Component {
             className="input"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            ref={(input)=>{this.input=input}}
           ></input>
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
-        <ul>
+        <ul 
+        ref={(ul)=>{this.ul=ul}}>
           {this.getTodoItem()}
         </ul>
       </Fragment>
@@ -48,7 +50,8 @@ class TodoList extends Component {
   }
   handleInputChange(e) {
     // this.state.inputValue=e.target.value;
-    const value=e.target.value
+    // const value=e.target.value
+    const value=this.input.value
     this.setState(()=>({
       
         inputValue: value,
@@ -58,12 +61,13 @@ class TodoList extends Component {
     console.log(e.target.value);
   }
   handleBtnClick() {
+    // prevState相当于this.state
     this.setState((prevState)=>({
       
         list: [...prevState.list, prevState.inputValue],
         inputValue: ''
       
-    }));
+    }),()=>{console.log(this.ul.querySelectorAll('div').length)});
   }
   handleItemDelete(index) {
     // imutable
