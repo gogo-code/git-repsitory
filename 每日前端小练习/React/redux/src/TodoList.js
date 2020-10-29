@@ -7,6 +7,11 @@ class TodoList extends Component {
     super(props)
     this.state=store.getState()
     console.log(store.getState())
+    this.handleInputChange=this.handleInputChange.bind(this)
+    // 订阅store的改变
+    this.handleStoreChange=this.handleStoreChange.bind(this)
+    this.handleBtnClick=this.handleBtnClick.bind(this)
+    store.subscribe(this.handleStoreChange)
   }
   render() {
     return (
@@ -15,8 +20,9 @@ class TodoList extends Component {
           value={this.state.inputValue}
           placeholder="todo info"
           style={{ width: '300px', marginRight: '10px' }}
+          onChange={this.handleInputChange}
         />
-        <Button type="primary">提交</Button>
+        <Button type="primary" onClick={this.handleBtnClick}>提交</Button>
         <List
         style={{marginTop:'10px',width:'300px'}}
           bordered
@@ -25,6 +31,26 @@ class TodoList extends Component {
         />
       </div>
     );
+  }
+
+  handleInputChange(e){
+    // 创建一段话来更改值
+    const action={
+      type:'change_input_value',
+      value:e.target.value
+    }
+    store.dispatch(action)
+  }
+  handleStoreChange(e){
+    // console.log('store change')
+    // 获取store里的数据并替换当前组件的数据
+    this.setState(store.getState())
+  }
+  handleBtnClick(){
+    const action={
+      type:'add_todo_item'
+    };
+    store.dispatch(action)
   }
 }
 export default TodoList;
