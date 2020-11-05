@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
-import store from './store'
+import {getInputChangeAction,getAddItemAction,getDeleteItemAction} from './store/actionCreators'
+import store from './store' 
 class TodoList extends Component {
   constructor(props){
     super(props)
     this.state=store.getState()
     console.log(store.getState())
     this.handleInputChange=this.handleInputChange.bind(this)
-    // 订阅store的改变
     this.handleStoreChange=this.handleStoreChange.bind(this)
     this.handleBtnClick=this.handleBtnClick.bind(this)
+    // 订阅store的改变
     store.subscribe(this.handleStoreChange)
   }
   render() {
@@ -27,7 +28,7 @@ class TodoList extends Component {
         style={{marginTop:'10px',width:'300px'}}
           bordered
           dataSource={this.state.list}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
+          renderItem={(item,index) => <List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>}
         />
       </div>
     );
@@ -35,10 +36,11 @@ class TodoList extends Component {
 
   handleInputChange(e){
     // 创建一段话来更改值
-    const action={
-      type:'change_input_value',
-      value:e.target.value
-    }
+    // const action={
+    //   type:CHANGE_INPUT_VALUE,
+    //   value:e.target.value
+    // }
+    const action=getInputChangeAction(e.target.value)
     store.dispatch(action)
   }
   handleStoreChange(e){
@@ -47,9 +49,11 @@ class TodoList extends Component {
     this.setState(store.getState())
   }
   handleBtnClick(){
-    const action={
-      type:'add_todo_item'
-    };
+    const action=getAddItemAction()
+    store.dispatch(action)
+  }
+  handleItemDelete(index){
+    const action=getDeleteItemAction(index)
     store.dispatch(action)
   }
 }
