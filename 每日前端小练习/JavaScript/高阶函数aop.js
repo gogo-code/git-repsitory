@@ -3,6 +3,7 @@
  * 把一个函数当做参数传递给另一个函数
  * 一个函数返回了一个函数
 */
+
 function fn(callback){
   callback()
 }
