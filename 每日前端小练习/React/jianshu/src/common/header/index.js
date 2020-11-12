@@ -56,7 +56,7 @@ const Header=(props)=>{
 // 将组件state数据映射到props
 const mapStateToProps=(state)=>{
   return {
-    focused:state.focused
+    focused:state.header.focused
   }
 }
 //将组件的dispatch方法映射到props
