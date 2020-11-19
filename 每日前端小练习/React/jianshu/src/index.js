@@ -1,20 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// 引入全局样式
-import {GlobalStyle} from './style'
-import {GlobalIconFont} from './statics/iconfont/iconfont'
-
-
 import App from './App';
+import store from "./store";
+import {Provider} from 'react-redux'
 
 
 ReactDOM.render(
-  <React.Fragment>
-    <GlobalStyle/>
-    <GlobalIconFont/>
-    <App />
-  </React.Fragment>,
-  
-  document.getElementById('root')
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.getElementById('root')
 );
-
