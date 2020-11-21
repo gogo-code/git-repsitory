@@ -35,8 +35,9 @@
     left: 50%;
     bottom: 100%;
     transform: translate(-50%, -20px);
+    transition: 0.15s 0.15s;
     color: #373c42;
-    /* opacity: 0; */
+    opacity: 0;
     /* visibility: hidden; */
     }
     .css-tips[data-title]:before {
@@ -44,7 +45,6 @@
     border-radius: 3px;
     padding: 6px 10px;
     line-height: 18px;
-    text-align: left;
     background-color: #373c42;
     color: #fff;
     font-size: 12px;
@@ -64,6 +64,7 @@
   .css-tips[data-title]:hover:before,
   .css-tips[data-title]:hover:after {
     visibility: visible;
+    /* transform: translate(-50%, -10px); */
     opacity: 1;
   }
 
@@ -74,7 +75,7 @@
 
 <body>
   <div >
-    <a href="javascript:" class="icon-delete css-tips" data-title="删除" role="button">
+    <a href="javascript:" class="icon-delete css-tips" data-title="删除jhaf" role="button">
       删除
     </a>
   </div>
