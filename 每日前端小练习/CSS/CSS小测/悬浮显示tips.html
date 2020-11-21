@@ -1,22 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    
+    div{
+      display: flex;
+      margin: 50px 80px;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon-delete {
+      display: block;
+      width: 30px;
+      height: 30px;
+      font-size: 0px;
+      background: url(./img/delete.png) no-repeat center;
+      background-size: cover;
+
+    }
+
+    .css-tips {
+      position: relative;
+    }
+
+    .css-tips[data-title]::before,
+    .css-tips[data-title]::after {
+      content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, -20px);
+    color: #373c42;
+    /* opacity: 0; */
+    /* visibility: hidden; */
+    }
+    .css-tips[data-title]:before {
+      content: attr(data-title);
+    border-radius: 3px;
+    padding: 6px 10px;
+    line-height: 18px;
+    text-align: left;
+    background-color: #373c42;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    white-space: nowrap;
+
+  }
+  .css-tips[data-title]:after {
+    content: "";
+    width: 0;
+    height: 0;
+    margin-bottom: -12px;
+    overflow: hidden;
+    border: 6px solid transparent;
+    border-top-color: currentColor;
+  }
+  .css-tips[data-title]:hover:before,
+  .css-tips[data-title]:hover:after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+
   </style>
 </head>
+
 <body>
-  <a
-  href="javascript:"
-  class="icon-delete css-tips"
-  data-title="删除"
-  role="button"
->
-  删除
-</a>
+  <div >
+    <a href="javascript:" class="icon-delete css-tips" data-title="删除" role="button">
+      删除
+    </a>
+  </div>
+
 </body>
+
 </html>
