@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .chat-list {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      list-style: none;
+    }
+
+    .chat-item {
+      display: flex;
+      padding: 0.4375rem;
+      margin-bottom: 0.9375rem;
+    }
+
+    .chat-item::after {
+      content: '';
+      display: inline-block;
+      width: 2.75rem;
+    }
+
+    .chat-avator {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .chat-container {
+      flex: 1;
+      text-align: start;
+      padding: 0 0.625rem;
+      overflow: hidden;
+    }
+
+    .chat-user {
+      margin: 0;
+      font-weight: normal;
+      font-size: 0.8125rem;
+      color: #949ead;
+    }
+
+    .chat-user span {
+      display: inline-block;
+    }
+
+    .chat-time {
+      padding: 0 0.5rem;
+    }
+
+    .chat-content {
+      position: relative;
+      display: inline-flex;
+      background: #f2f5f9;
+      border-color: #f2f5f9;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #2c3038;
+      padding: .6rem 1rem;
+      text-align: left;
+      margin: 0.3125rem 0 0;
+      border-radius: 0.375rem;
+    }
+
+    .chat-content::before {
+      content: '';
+      position: absolute;
+      width: 1.4rem;
+      height: 1.2rem;
+      top: 0;
+      margin-inline-start: -3rem;
+      -webkit-margin-start: -3rem;
+      /**qq浏览器有点兼容性问题，需要加上这个**/
+      border-top-right-radius: 40% 50%;
+      border-top-left-radius: 40% 50%;
+      border-left: 0.6rem solid;
+      border-right: 0.6rem solid;
+      border-color: inherit;
+    }
+
+    /** data-chat-self（message from myself） **/
+    .chat-item[data-chat-self] {
+      direction: rtl;
+    }
+
+    .chat-item[data-chat-self] .chat-content {
+      background: #00afff;
+      border-color: #00afff;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="chat-list">
+    <li class="chat-item">
+      <img class="chat-avator" src="https://tva4.sinaimg.cn/crop.0.0.750.750.180/75f2b996jw8f6zkdm7qp7j20ku0kudgr.jpg"
+        alt="">
+      <div class="chat-container">
+        <h3 class="chat-user">
+          <span class="chat-name">左国梁</span>
+          <span class="chat-time">9月30日 21:47</span>
+        </h3>
+        <p class="chat-content">
+          什么秘密都没有，我觉得你现在跟我说什么没有意义
+        </p>
+      </div>
+    </li>
+    <li class="chat-item" data-chat-self>
+      <img class="chat-avator"
+        src="https://tvax3.sinaimg.cn/crop.135.0.810.810.180/006LO43wly8frjay2sypvj30u00mita5.jpg" alt=""
+        class="chat-avator">
+      <div class="chat-container">
+        <h3 class="chat-user">
+          <span class="chat-name">尤国良</span>
+          <span class="chat-time">9月30日 22:00</span>
+        </h3>
+        <p class="chat-content">
+          年轻人不讲武德
+        </p>
+      </div>
+    </li>
+  </ul>
+</body>
+
+</html>
