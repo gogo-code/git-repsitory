@@ -42,4 +42,8 @@ export default {
       pathRewrite: { "^/dev": "" }, // 把 dev 重写掉
     },
   },
+  // // 使本地mock数据生效
+  // locale: {
+  //   enable: true,
+  // },
 };
