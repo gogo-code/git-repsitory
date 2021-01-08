@@ -25,10 +25,29 @@ const getDetail = (id) => {
     content: "内容A",
     createTime: 1610085450380,
     author: "zhang",
-  }
-}
+  };
+};
+
+const newBlog = (blogData = {}) => {
+  // blogData是一个博客对象，包含title content属性
+  return {
+    id: 3,
+  };
+};
+
+const updateBlog = (id, blogData = {}) => {
+  console.log("update blog", id, blogData);
+  return true;
+};
+
+const deleteBlog = (id) => {
+  return true;
+};
 
 module.exports = {
   getList,
-  getDetail
+  getDetail,
+  newBlog,
+  updateBlog,
+  deleteBlog,
 };

@@ -25,6 +25,7 @@ class ErrorModel extends BaseModel {
   constructor(data, message) {
     super(data, message);
     this.errno = -1;
+    this.message = "登陆失败";
   }
 }
 
