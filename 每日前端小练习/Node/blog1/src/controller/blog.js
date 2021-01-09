@@ -1,31 +1,40 @@
+const { exec } = require("../db/mysql");
 const getList = (author, keyword) => {
-  // 先返回假数据
-  return [
-    {
-      id: 1,
-      title: "标题A",
-      content: "内容A",
-      createTime: 1610085450380,
-      author: "zhang",
-    },
-    {
-      id: 2,
-      title: "标题B",
-      content: "内容B",
-      createTime: 1610085450380,
-      author: "lisi",
-    },
-  ];
+  // // 先返回假数据
+  // return [
+  //   {
+  //     id: 1,
+  //     title: "标题A",
+  //     content: "内容A",
+  //     createTime: 1610085450380,
+  //     author: "zhang",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "标题B",
+  //     content: "内容B",
+  //     createTime: 1610085450380,
+  //     author: "lisi",
+  //   },
+  // ];
+  let sql = `select * from blogs where 1=1 `;
+  if (author) {
+    sql += `and author='${author}'`;
+  }
+  if (keyword) {
+    sql += `and title like '%${keyword}%'`;
+  }
+  sql += `order by createtime desc`;
+
+  // 返回promise
+  return exec(sql);
 };
 
 const getDetail = (id) => {
-  return {
-    id: 1,
-    title: "标题A",
-    content: "内容A",
-    createTime: 1610085450380,
-    author: "zhang",
-  };
+  let sql = `select * from blogs where id='${id}'`;
+  return exec(sql).then(rows=> {
+    return rows[0]
+  })
 };
 
 const newBlog = (blogData = {}) => {
