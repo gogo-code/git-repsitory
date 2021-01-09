@@ -32,25 +32,54 @@ const getList = (author, keyword) => {
 
 const getDetail = (id) => {
   let sql = `select * from blogs where id='${id}'`;
-  return exec(sql).then(rows=> {
-    return rows[0]
-  })
+  return exec(sql).then((rows) => {
+    return rows[0];
+  });
 };
 
 const newBlog = (blogData = {}) => {
   // blogData是一个博客对象，包含title content属性
-  return {
-    id: 3,
-  };
+  const title = blogData.title;
+  const content = blogData.content;
+  const author = blogData.author;
+  const createTime = Date.now();
+
+  const sql = `
+    insert into blogs (title,content,createtime,author)
+    values ('${title}','${content}',${createTime},'${author}')
+  `;
+  return exec(sql).then((insertData) => {
+    console.log("insertData is", insertData);
+    return {
+      id: insertData.insertData,
+    };
+  });
 };
 
 const updateBlog = (id, blogData = {}) => {
-  console.log("update blog", id, blogData);
-  return true;
+  const title = blogData.title;
+  const content = blogData.content;
+
+  const sql = `update blogs set title='${title}',content='${content}' where id=${id}`;
+  console.log(sql);
+  return exec(sql).then((updateData) => {
+    console.log("updateData is", updateData);
+    if (updateData.affectedRows > 0) {
+      return true;
+    }
+    return false;
+  });
 };
 
-const deleteBlog = (id) => {
-  return true;
+const deleteBlog = (id,author) => {
+  const sql=`delete from blogs where id='${id}' and author='${author}'`
+  return exec(sql).then((delData) => {
+    // console.log("updateData is", delData);
+    if (delData.affectedRows > 0) {
+      return true;
+    }
+    return false;
+  })
 };
 
 module.exports = {
