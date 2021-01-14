@@ -19,8 +19,11 @@ class BasicLayout extends Component {
               height: "32px",
               background: "rgba(255,255,255,.2)",
               margin: "16px",
+              textAlign: "center",
             }}
-          />
+          >
+            <h1 style={{ color: "#fff" }}>后台管理系统</h1>
+          </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Icon type="pie-chart" />
@@ -49,6 +52,12 @@ class BasicLayout extends Component {
               <Link to="/puzzlecards">
                 <Icon type="pie-chart" />
                 <span>卡片</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Link to="/blogmanager">
+                <Icon type="pie-chart" />
+                <span>博客管理</span>
               </Link>
             </Menu.Item>
           </Menu>

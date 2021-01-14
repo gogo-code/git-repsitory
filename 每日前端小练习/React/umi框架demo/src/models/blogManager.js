@@ -1,22 +1,16 @@
 import { message } from "antd";
-import request from "../../utils/request";
-
-const delay = (millisecond) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, millisecond);
-  });
-};
+import request from "../utils/request";
 
 export default {
-  namespace: "puzzlecards",
+  namespace: "blog",
   state: {
     data: [],
     counter: 0,
   },
   effects: {
-    *queryInitCards(_, sagaEffects) {
-      const { call, put } = sagaEffects;
-      const endPointURL = "/dev/random_joke";
+    *queryblog(_, { call, put }) {
+
+      const endPointURL = "/api/blog/list";
       try {
         const puzzle = yield call(request, endPointURL);
         yield put({ type: "addNewCard", payload: puzzle });
