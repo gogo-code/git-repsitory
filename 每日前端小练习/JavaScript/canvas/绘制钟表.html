@@ -1,30 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
-
-<body>
-    <canvas id="drawing" width="200" height="200"></canvas>
-    <script>
-        let drawing = document.getElementById("drawing");
-        if (drawing.getContext) {
-            let context = drawing.getContext("2d");
-            context.fillStyle = "#ff0000";
-            context.fillRect(10, 10, 50, 50);
-            context.fillStyle = "rgba(0,0,255,0.5)";
-            context.fillRect(30, 30, 50, 50);
-            context.clearRect(40, 40, 10, 10);
-            // context.strokeStyle = "#ff0000";
-            // context.strokeRect(10, 10, 50, 50);
-            // context.strokeStyle = "rgba(0,0,255,0.5)";
-            // context.strokeRect(30, 30, 50, 50);
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
         }
-    </script>
-</body>
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(247, 247, 247);
+        }
+    </style>
+</head>
+<body>
+<canvas id="myclock">请升级您的浏览器至最新版本后再查看本行文字</canvas>
+<script>
+    //获取canvas元素
+    var myclock = document.querySelector("#myclock");
+    //设置画布的大小
+    var swidth = document.documentElement.clientWidth;//获取屏幕的宽高属性用来设置画布大小
+    var sheight = document.documentElement.clientHeight;
+    myclock.width = swidth;
+    myclock.height = sheight;
+    //中心点坐标获取
+    var centerX = swidth / 2;
+    var centerY = sheight / 2;
+
+
+    //绘制表盘
+    function loop() {
+        //获取当前时间
+        var time = new Date();
+        //将画布转化为2d模型
+        var clock = myclock.getContext("2d");
+        clock.save();
+        clock.clearRect(0,0,swidth, sheight);
+        clock.translate(swidth / 2, sheight / 2);
+        clock.rotate(-Math.PI / 2);
+        //设置表盘刻度样式
+        clock.lineWidth = 10;
+        clock.strokeStyle = "#000";
+        clock.fillStyle = "#fff";
+        clock.lineCap = "round";
+        //设置小时刻度
+        for (var i = 0; i < 12; i++) {
+            clock.beginPath();
+            clock.rotate(30 * Math.PI / 180);
+            clock.moveTo(325, 0);
+            clock.lineTo(350, 0);
+            clock.stroke();
+        }
+        //设置分钟刻度
+        for (var i = 0; i < 60; i++) {
+            clock.beginPath();
+            clock.rotate(6 * Math.PI / 180);
+            clock.moveTo(340, 0);
+            clock.lineTo(350, 0);
+            clock.stroke();
+        }
+        clock.save();
+
+        // 绘制表盘
+        clock.restore();
+
+        clock.beginPath();
+        clock.strokeStyle = "pink";
+        clock.lineWidth = 10;
+        clock.arc(0, 0, 352, 0, Math.PI * 2, false);
+        clock.stroke();
+        clock.save();
+
+
+        //获取时间
+        var hour = time.getHours();
+        var min = time.getMinutes();
+        var sec = time.getSeconds();
+        hour = hour > 12 ? hour - 12 : hour;
+
+         //绘制秒针指针
+        clock.restore();
+        clock.save();
+        clock.strokeStyle="red";
+        clock.fillStyle="rgb(247, 247, 247)";
+        clock.lineWidth=5;
+        clock.beginPath();
+        clock.rotate(sec*Math.PI/180*6);
+        clock.moveTo(-10,0);
+        clock.lineTo(120,0);
+        clock.arc(260,0,10,0,Math.PI*2,false);
+        clock.moveTo(140,0);
+        clock.lineTo(280,0);
+        clock.stroke();
+        clock.fill();
+
+        clock.restore();
+        clock.save();
+        //绘制分针指针
+        clock.strokeStyle="#000";
+        clock.lineWidth=8;
+        clock.beginPath();
+        clock.rotate(min*Math.PI/180*6+sec/60*Math.PI/180*6);
+        clock.moveTo(-10,0);
+        clock.lineTo(200,0);
+        clock.stroke();
+
+        //绘制时针指针
+        clock.restore();
+        clock.beginPath();
+        clock.strokeStyle="#000";
+        clock.lineWidth=15;
+        clock.rotate(hour*Math.PI/180*30+min/60*Math.PI/180*6+sec/3600*Math.PI/180*6);
+        clock.moveTo(-10,0);
+        clock.lineTo(100,0);
+        clock.stroke();
+
+        clock.restore();
+        window.requestAnimationFrame(loop);
+
+
+    }
+    loop();
+
+</script>
+</body>
 </html>
