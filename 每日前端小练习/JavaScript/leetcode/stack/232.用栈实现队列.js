@@ -9,7 +9,9 @@
  * Initialize your data structure here.
  */
 var MyQueue = function() {
+  // 入栈
   this.instack=[]
+  // 出栈
   this.outstack=[]
 };
 
@@ -27,6 +29,7 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
+  // 如果输出栈未空就要弹栈
   if(!this.outstack.length)  {
     while(this.instack.length) {
       this.outstack.push(this.instack.pop())
@@ -40,7 +43,13 @@ MyQueue.prototype.pop = function() {
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-  return this.instack[0]
+  if(!this.outstack.length)  {
+    while(this.instack.length) {
+      this.outstack.push(this.instack.pop())
+    }
+  }
+  // peek和pop的区别在于peek不会在输出栈再弹栈
+  return this.outstack[this.outstack.length-1]
 };
 
 /**
