@@ -9,7 +9,8 @@
  * Initialize your data structure here.
  */
 var MyStack = function() {
-
+  this.inqueue=[]
+  this.outqueue=[]
 };
 
 /**
@@ -18,7 +19,7 @@ var MyStack = function() {
  * @return {void}
  */
 MyStack.prototype.push = function(x) {
-
+  this.inqueue.push(x)
 };
 
 /**
@@ -26,7 +27,12 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-
+  if(!this.outqueue.length) {
+    while(this.inqueue.length) {
+      this.outqueue.unshift(this.inqueue.shift())
+    }
+  }
+  return this.outqueue.shift()
 };
 
 /**
@@ -34,7 +40,10 @@ MyStack.prototype.pop = function() {
  * @return {number}
  */
 MyStack.prototype.top = function() {
-
+    while(this.inqueue.length) {
+      this.outqueue.unshift(this.inqueue.shift())
+    }
+  return this.outqueue[0]
 };
 
 /**
@@ -42,7 +51,7 @@ MyStack.prototype.top = function() {
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-
+  return !this.outqueue.length&&!this.inqueue.length
 };
 
 /**
