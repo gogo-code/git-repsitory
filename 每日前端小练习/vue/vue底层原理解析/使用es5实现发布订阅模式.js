@@ -14,7 +14,7 @@ class Dep {
       this.subscribers.add(activeEffect)
     }
   }
-  
+
   // 更新操作 通常会在值被修改后调用
   notify() {
      // 遍历缓存列表里存放的函数 并依次触发执行
@@ -56,19 +56,9 @@ function reactive(raw) {
 }
 
 // 实现
-const dep = new Dep()
-
-let actualCount = 0
-const state = {
-  get count() {
-    dep.depend()
-    return actualCount
-  },
-  set count(newCount) {
-    actualCount = newCount
-    dep.notify()
-  }
-}
+const state = reactive({
+  count: 0
+})
 
 watchEffect(() => {
   console.log(state.count)
