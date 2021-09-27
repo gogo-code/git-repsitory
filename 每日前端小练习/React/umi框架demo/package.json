@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "umi": "^3.3.3",
-    "@umijs/preset-react": "^1"
+    "@umijs/preset-react": "^1",
+    "umi": "^3.3.3"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@antv/g2": "^4.1.4",
-    "antd": "^4.9.4"
+    "antd": "^4.9.4",
+    "moment": "^2.29.1"
   }
 }

@@ -8,7 +8,6 @@ import styles from './index.less';
 const SelectLang = (props) => {
   const { className } = props;
   const selectedLang = getLocale();
-
   const changeLang = ({ key }) => setLocale(key);
 
   const locales = ['zh-CN', 'zh-TW', 'en-US', 'pt-BR'];

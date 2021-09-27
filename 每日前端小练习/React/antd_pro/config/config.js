@@ -108,6 +108,12 @@ export default {
               component: './Welcome',
             },
             {
+              path: '/example',
+              name: 'example',
+              icon: 'smile',
+              component: './Example',
+            },
+            {
               path: '/admin',
               name: 'admin',
               icon: 'crown',

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Form, Input, Button, Row, Col, DatePicker, Select, Space } from 'antd';
-import moment from 'moment'
+import 'moment/locale/zh-cn';
+
+import locale from 'antd/lib/date-picker/locale/zh_CN';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 const Option = Select.Option;
 const TextArea = Input.TextArea;
-export default class Analysis extends Component {
+export default class Example extends Component {
   state = {
     current: '',
     xmmc: '',
     username: null,
   };
-
-  componentDidMount(){
-    console.log(this.list);
-  }
 
   onChange = val => {
     // 修改老师邮箱输入框
@@ -22,9 +21,8 @@ export default class Analysis extends Component {
   };
   data = require('./basicInformation.json');
   render() {
-    console.log(this.list);
     return (
-      <div style={{ height: '600px', overflow: 'auto',backgroundColor:"#fff" }}>
+      <div style={{ height: '600px', overflow: 'auto' }}>
         <br />
         <label style={{ fontSize: '16px', fontWeight: '900', color: '#2d4ce2' }}>项目信息</label>
         <br />
@@ -49,9 +47,9 @@ export default class Analysis extends Component {
           </Row>
           <Row>
             <Col offset={1} span={6}>
-              <Form.Item label="中标时间:" >
+              <Form.Item label="中标时间:">
                 <DatePicker
-                  
+                  locale={locale}
                   style={{ width: '100%' }}
                   value={moment(this.data.zbsj, 'YYYY-MM-DD')}
                 />
@@ -60,9 +58,10 @@ export default class Analysis extends Component {
             <Col offset={2} span={6}>
               <Form.Item label="实施开始时间:">
                 {this.data.sskssj === '' ? (
-                  <DatePicker  style={{ width: '100%' }} />
+                  <DatePicker locale={locale} style={{ width: '100%' }} />
                 ) : (
                   <DatePicker
+                    locale={locale}
                     style={{ width: '100%' }}
                     value={moment(this.data.sskssj, 'YYYY-MM-DD')}
                   />
@@ -72,10 +71,10 @@ export default class Analysis extends Component {
             <Col offset={2} span={6}>
               <Form.Item label="实施结束时间:">
                 {this.data.ssjssj === '' ? (
-                  <DatePicker  style={{ width: '100%' }} />
+                  <DatePicker locale={locale} style={{ width: '100%' }} />
                 ) : (
                   <DatePicker
-                    
+                    locale={locale}
                     style={{ width: '100%' }}
                     value={moment(this.data.ssjssj, 'YYYY-MM-DD')}
                   />
@@ -96,7 +95,7 @@ export default class Analysis extends Component {
           </label>{' '}
           <br />
           <br />
-          <Form.List name="ryxx" ref={el=>this.list=el} initialValue={this.data.ryxx}>
+          <Form.List name="ryxx">
             {(fieldSize, { add, remove }) => {
               console.log(fieldSize);
               return (
@@ -119,9 +118,9 @@ export default class Analysis extends Component {
                     // eslint-disable-next-line react/jsx-key
                     <Row>
                       <Col offset={1} span={5}>
-                        <Form.Item {...restField} name={[name, 'ry']}>
+                        <Form.Item {...restField} name={[name, 'first']}>
                           <Select
-                            // defaultValue="销售"
+                            defaultValue="销售"
                             // eslint-disable-next-line react/jsx-handler-names
                             onChange={this.onChange}
                           >
@@ -133,13 +132,14 @@ export default class Analysis extends Component {
                         </Form.Item>
                       </Col>
                       <Col offset={1} span={5}>
-                        <Form.Item {...restField} name={[name, 'xm']}>
-                          <Input />
+                        <Form.Item {...restField} name={[name, 'last']}>
+                          {' '}
+                          <Input />{' '}
                         </Form.Item>
                       </Col>
                       <Col offset={1} span={5}>
-                        <Form.Item {...restField} name={[name, 'yx']}>
-                          {this.data.ryxx[key].ry === '老师' ? (
+                        <Form.Item {...restField}>
+                          {this.state.username === '老师' ? (
                             <Input />
                           ) : (
                             <Input placeholder="请输入" addonAfter="@ly-sky.com" />
@@ -147,8 +147,9 @@ export default class Analysis extends Component {
                         </Form.Item>
                       </Col>
                       <Col offset={1} span={4}>
-                        <Form.Item {...restField} name={[name, 'dhhm']}>
-                          <Input />
+                        <Form.Item {...restField}>
+                          {' '}
+                          <Input />{' '}
                         </Form.Item>
                       </Col>
                       <Col style={{ marginLeft: '2%' }}>
@@ -159,7 +160,7 @@ export default class Analysis extends Component {
                   <Row>
                     <Col offset={1} span={22}>
                       <Form.Item>
-                        <Button type="dashed" onClick={() => add()} block >
+                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                           增加
                         </Button>
                       </Form.Item>
@@ -180,7 +181,7 @@ export default class Analysis extends Component {
             <br />
             <br />
           </div>
-          <Form.List name="users" initialValue={this.data.ycxx}>
+          <Form.List name="users">
             {(fieldSize, { add, remove }) => (
               <>
                 <Row>
@@ -195,23 +196,21 @@ export default class Analysis extends Component {
                   // eslint-disable-next-line react/jsx-key
                   <Row>
                     <Col offset={1} span={5}>
-                    
-                        <Input.Group style={{ display: 'flex',alignItems:"flex-start" }}>
-                        
+                      <Form.Item {...restField} name={[name, 'first']}>
+                        <Input.Group style={{ display: 'flex' }}>
                           <Select defaultValue="VPN">
                             <Option value="VPN">VPN</Option>
                             <Option value="向日葵">向日葵</Option>
                             <Option value="堡垒机">堡垒机</Option>
                           </Select>
-                          <Form.Item {...restField} name={[name, 'zh']}>
                           <Input />
-                          </Form.Item>
                         </Input.Group>
-                 
+                      </Form.Item>
                     </Col>
                     <Col offset={1} span={5}>
-                      <Form.Item {...restField} name={[name, 'mm']}>
-                        <Input />
+                      <Form.Item {...restField} name={[name, 'last']}>
+                        {' '}
+                        <Input />{' '}
                       </Form.Item>
                     </Col>
                     <Col style={{ marginLeft: '2%' }}>
@@ -222,7 +221,7 @@ export default class Analysis extends Component {
                 <Row>
                   <Col offset={1} span={11}>
                     <Form.Item>
-                      <Button type="dashed" onClick={() => add()} block>
+                      <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                         增加
                       </Button>
                     </Form.Item>
