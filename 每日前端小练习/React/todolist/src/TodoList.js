@@ -21,7 +21,7 @@ class TodoList extends Component {
           <span
             style={{
               opacity: 0,
-              // transition: " all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 0s",
+              transition: "opacity 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.05s,transform 0.8s cubic-bezier(0.55, 0.09, 0.68, 0.53)",
               display: "inline-block",
               transform: "translate(26px,26px)",
             }}
@@ -37,12 +37,14 @@ class TodoList extends Component {
     let childList = this.div.childNodes;
     console.log(this.div.childNodes);
     for (let i = 0; i < childList.length; i++) {
-      let delay = (i + 1) * 0.1;
-      // childList[i].style.transitionDelay = `${delay}s`;
-      let translateCount = 26;
-      let opacityCount = 0;
-      let timeHandle = null;
-      this.animation(i, childList, translateCount, timeHandle, opacityCount);
+      let delay = (i + 1) * 0.05;
+      childList[i].style.transitionDelay = `${delay}s`;
+      childList[i].style.transform = `translate(0px,0px)`;
+      childList[i].style.opacity = 1;
+      // let translateCount = 26;
+      // let opacityCount = 0;
+      // let timeHandle = null;
+      // this.animation(i, childList, translateCount, timeHandle, opacityCount);
     }
   };
 
