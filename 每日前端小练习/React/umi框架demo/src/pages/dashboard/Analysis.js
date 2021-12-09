@@ -139,7 +139,7 @@ export default class Analysis extends Component {
                       </Col>
                       <Col offset={1} span={5}>
                         <Form.Item {...restField} name={[name, 'yx']}>
-                          {this.data.ryxx[key].ry === '老师' ? (
+                          {this.data.ryxx[key]?.ry === '老师' ? (
                             <Input />
                           ) : (
                             <Input placeholder="请输入" addonAfter="@ly-sky.com" />
