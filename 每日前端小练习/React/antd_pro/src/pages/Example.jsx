@@ -19,7 +19,7 @@ export default class Example extends Component {
     // 修改老师邮箱输入框
     this.setState({ username: val });
   };
-  data = require('./basicInformation.json');
+  // data = require('../');
   render() {
     return (
       <div style={{ height: '600px', overflow: 'auto' }}>
