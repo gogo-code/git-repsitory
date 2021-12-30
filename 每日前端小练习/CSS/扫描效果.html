@@ -1,0 +1,62 @@
+<!--
+ * @Description:
+ * @Author: zuoguoliang
+ * @Date: 2021-12-30 11:14:38
+ * @LastEditors: zuoguoliang
+ * @LastEditTime: 2021-12-30 11:15:44
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-title-scanning {
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .container-title-scanning::after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background-image: linear-gradient(to right, transparent 0%, #00ffff 100%);
+            z-index: -10;
+            animation: scanning 2s infinite linear;
+            opacity: 0.7;
+        }
+
+        /* 定义一个从左向右的扫描动画 */
+        @keyframes scanning {
+            0% {
+                left: 0;
+                opacity: 0.7;
+            }
+
+            90% {
+                left: 100%;
+                opacity: 0.3;
+            }
+
+            100% {
+                right: -20px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-title">
+        <span class="title-text container-title-scanning">项目分析</span>
+    </div>
+</body>
+
+</html>
