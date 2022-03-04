@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style>
+			body {
+				margin: 20px;
+			}
+			#ball {
+				background: red;
+				border-radius: 20px;
+				height: 40px;
+				left: 20px;
+				position: absolute;
+				top: 100px;
+				width: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<select id="ease">
+			<option value="linear" selected="selected">linear</option>
+			<option value="quadin">quadin</option>
+			<option value="quadout">quadout</option>
+			<option value="quadinout">quadinout</option>
+			<option value="cubicin">cubicin</option>
+			<option value="cubicout">cubicout</option>
+			<option value="cubicinout">cubicinout</option>
+			<option value="quartin">quartin</option>
+			<option value="quartout">quartout</option>
+			<option value="quartinout">quartinout</option>
+			<option value="quintin">quintin</option>
+			<option value="quintout">quintout</option>
+			<option value="quintinout">quintinout</option>
+			<option value="sinein">sinein</option>
+			<option value="sineout">sineout</option>
+			<option value="sineinout">sineinout</option>
+			<option value="expoin">expoin</option>
+			<option value="expoout">expoout</option>
+			<option value="expoinout">expoinout</option>
+			<option value="circin">circin</option>
+			<option value="circout">circout</option>
+			<option value="circinout">circinout</option>
+			<option value="elasticin">elasticin</option>
+			<option value="elasticout">elasticout</option>
+			<option value="elasticinout">elasticinout</option>
+			<option value="backin">backin</option>
+			<option value="backout">backout</option>
+			<option value="backinout">backinout</option>
+			<option value="bouncein">bouncein</option>
+			<option value="bounceout">bounceout</option>
+			<option value="bounceinout">bounceinout</option>
+		</select>
+		<button id="button">
+			go
+		</button>
+		<div id="ball"></div>
+		<script src="simpleAnime.js"></script>
+		<script>
+			(function() {
+				SimpleAnime.setFPS(10);
+				var ball = document.getElementById('ball'), ease = document.getElementById('ease'), button = document.getElementById('button');
+				button.addEventListener('click', function() {
+					button.setAttribute('disabled', 'disabled');
+					var animeObj;
+					animeObj = SimpleAnime({
+						duration : 3000,
+						easing : ease.value,
+						loop : 3,
+						pause : true,
+						before : [function(event) {
+							console.log(event);
+						}],
+						beforeloop : function(event) {
+							console.log(event);
+						},
+						afterloop : function(event) {
+							console.log('after'+event.loop);
+						}
+					}).bind({
+						progress : [function(event) {
+							var new_ease = SimpleAnime.getEasing(event.percent, ['ease-Out-Bounce', 'EEEla(990)#$)@*stic']);
+							ball.style.left = (20 + 500 * new_ease[1]) + 'px';
+							ball.style.top = 100 + 200 * new_ease[0] + 'px';
+						}],
+						after : function() {
+							ball.removeAttribute('style');
+							button.removeAttribute('disabled');
+						}
+					});
+					setTimeout(function() {
+						animeObj.resume();
+					}, 500);
+					setTimeout(function() {
+						SimpleAnime.setFPS(60);
+					}, 1000);
+					
+					//同时添加两个动画对象，可不同步执行动画
+					SimpleAnime({
+						duration : 2000,
+						easing : ease.value,
+						progress : function(event) {
+							ball.style.opacity = event.ease;
+						}
+					});
+					return;
+					setTimeout(function() {
+						animeObj.pause();
+					}, 1000);
+					setTimeout(function() {
+						animeObj.restart().resume();
+					}, 1500);
+					setTimeout(function() {
+						animeObj.pause();
+					}, 2000);
+					setTimeout(function() {
+						animeObj.resume();
+					}, 2500);
+					setTimeout(function() {
+						animeObj.destroy();
+						button.removeAttribute('disabled');
+					}, 3500);
+				});
+				var listen = 0;
+				var listenFunc = function(){
+					console.log(listen++);
+					if(listen == 1000) {
+						SimpleAnime.unlisten(arguments.callee);
+					}
+				};
+				SimpleAnime.listen(listenFunc).unlisten(listenFunc);
+			})();
+		</script>
+	</body>
+</html>
