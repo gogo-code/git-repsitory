@@ -3,7 +3,7 @@
  * @Author: zuoguoliang
  * @Date: 2022-04-27 14:46:59
  * @LastEditors: zuoguoliang
- * @LastEditTime: 2022-04-27 17:13:03
+ * @LastEditTime: 2022-04-28 09:47:06
  */
 
 let dataSource = {
@@ -1623,41 +1623,54 @@ let dataSource = {
 
 // 保留n位小数
 function roundFun(value, n) {
-    return Math.round(value*Math.pow(10,n))/Math.pow(10,n);
-  }
+  return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+}
 
 // 单位转换
-function unitChange(value){
-    if(value>=10000) {
-        return  roundFun(value/1000,0)+" ms"
-    }
-    else if(value<10000&&value>=1000) {
-        return  roundFun(value/1000,1)+" ms"
-    }
-    else if(value<1000) {
-        return value+" μs"
-    }
+function unitChange(value) {
+  if (value >= 10000) {
+    return roundFun(value / 1000, 0) + ' ms';
+  } else if (value < 10000 && value >= 1000) {
+    return roundFun(value / 1000, 1) + ' ms';
+  } else if (value < 1000) {
+    return value + ' μs';
+  }
 }
-let arr = [];
+let obj = {};
 let parentIdList = [];
-// 这里如果有多个container需要分组，先考虑无分组情况
 dataSource.trace.items.map(item => {
   if (item.container) {
-    let { transaction:{name,duration}, timestamp } = item;
-    let _item = { name, timestamp,duration,label:unitChange(duration.us)};
-    arr.push(_item);
+    let {
+      transaction: { name, duration, id },
+      timestamp,
+    } = item;
+    let _item = { name, timestamp, duration, label: unitChange(duration.us) };
+    obj[id] = [];
+    obj[id].push(_item);
     // 记录id
     // parentIdList.push(transaction.id);
   }
   if (item.parent) {
     let {
       timestamp,
-      span: { duration,name },
+      span: { duration, name },
     } = item;
-    let _item = { timestamp, duration, name,label:unitChange(duration.us)};
-    arr.push(_item);
+    let _item = { timestamp, duration, name, label: unitChange(duration.us) };
+    obj[item.parent.id].push(_item);
   }
 });
-arr.sort((a,b)=>a.timestamp.us-b.timestamp.us)
 
-console.log(arr);
+// 记录起始的时间戳
+let firsttimestamp=obj['7a236dfa6fc2509e'][0].timestamp.us
+let _dataSource=obj['7a236dfa6fc2509e'].sort(
+  (a, b) => a.timestamp.us - b.timestamp.us
+).map((item,index)=>{
+    if(index==0) {
+        item.timestamp=0
+    }
+    else item.timestamp=item.timestamp.us-firsttimestamp
+
+    return item
+})
+
+console.log(_dataSource);
