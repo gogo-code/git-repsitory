@@ -3,7 +3,7 @@
  * @Author: zuoguoliang
  * @Date: 2022-04-27 14:46:59
  * @LastEditors: zuoguoliang
- * @LastEditTime: 2022-04-28 09:47:06
+ * @LastEditTime: 2022-04-28 14:43:37
  */
 
 let dataSource = {
@@ -1672,5 +1672,3 @@ let _dataSource=obj['7a236dfa6fc2509e'].sort(
 
     return item
 })
-
-console.log(_dataSource);

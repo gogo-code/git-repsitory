@@ -3,7 +3,7 @@
  * @Author: zuoguoliang
  * @Date: 2021-01-06 09:01:13
  * @LastEditors: zuoguoliang
- * @LastEditTime: 2022-01-18 16:37:04
+ * @LastEditTime: 2022-04-28 15:02:14
  */
 // function insert(arr, item, index) {
 //   let arr1=[...arr.splice(index,0,item)];
@@ -33,3 +33,13 @@ let b={
     }()
 }
 console.log(b.a);
+
+// 计算度数
+let num=7
+let arr=[]
+for (let i = 0; i <num; i++) {
+    let num=parseInt((i+1)*360/7)
+    arr.push(num) 
+}
+
+console.log(arr)
