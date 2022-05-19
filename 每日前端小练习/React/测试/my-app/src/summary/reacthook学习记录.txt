@@ -26,3 +26,6 @@ React 会等到事件处理程序中的所有代码都运行后，才会处理�
 非受控组件通过state传递
 
 通过给组件添加key可以隔离组件的状态，不让状态进行共享，且不是全局，只是指定父级中的位置
+
+import { flushSync } from 'react-dom';
+flushSync可以将状态更新完成后立即更新dom
