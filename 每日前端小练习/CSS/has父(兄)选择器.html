@@ -1,0 +1,75 @@
+<!--
+ * @Description:
+ * @Author: zuoguoliang
+ * @Date: 2022-05-25 09:42:12
+ * @LastEditors: zuoguoliang
+ * @LastEditTime: 2022-05-25 09:49:53
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div:has(.g-test-has) {
+            border: 1px solid #000;
+        }
+
+
+        div:has(> h2 > span) {
+            margin-left: 24px;
+            border: 1px solid #000;
+        }
+
+        .has-test:has(+ h2) {
+            margin-left: 24px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 简单例子 -->
+    <div>
+        <p>div -- p</p>
+    </div>
+    <div>
+        <p class="g-test-has">div -- p.has</p>
+    </div>
+    <div>
+        <p>div -- p</p>
+    </div>
+    <!-- 嵌套结构的父元素选择 -->
+    <div>
+        <span>div span</span>
+    </div>
+
+    <div>
+        <ul>
+            <li>
+                <h2><span>div ul li h2 span</span></h2>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <h2><span>div h2 span</span></h2>
+    </div>
+    <!-- 同级结构的兄元素选择 -->
+    <div class="has-test">div + p</div>
+    <p>p</p>
+
+    <div class="has-test">div + h1</div>
+    <h1>h1</h1>
+
+    <div class="has-test">div + h2</div>
+    <h2>h2</h2>
+
+    <div class="has-test">div + ul</div>
+    <ul>ul</ul>
+</body>
+
+</html>
