@@ -21,5 +21,6 @@ var twoSum = function(numbers, target) {
   // 方法二 双指针
   
 };
+
 // @lc code=end
 

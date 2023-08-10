@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: zuoguoliang
+ * @Date: 2021-01-06 09:01:13
+ * @LastEditors: zuoguoliang
+ * @LastEditTime: 2023-07-04 15:08:21
+ */
 function queryToObj() {
   const res = {};
   const search = location.search.substr(1); //去掉前面的？
@@ -9,7 +16,7 @@ function queryToObj() {
   });
   return res;
 }
-使用URLSearchParams;
+// 使用URLSearchParams;
 function queryToObj() {
   const res = {};
   const pList = new URLSearchParams(location.search);
