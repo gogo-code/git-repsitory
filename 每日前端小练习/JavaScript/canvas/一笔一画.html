@@ -1,0 +1,58 @@
+<!--
+ * @Description: 
+ * @Author: zuoguoliang
+ * @Date: 2023-08-28 09:23:01
+ * @LastEditors: zuoguoliang
+ * @LastEditTime: 2023-08-28 09:23:12
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+  <script>
+
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    var painting = false;
+
+    function startDraw(e) {
+      console.log('startDraw');
+      painting = true;
+      draw(e);
+    }
+
+    function endDraw() {
+      console.log("endDraw");
+      painting = false;
+      ctx.beginPath();
+    }
+
+    function draw(e) {
+      if (!painting) return;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = 'black';
+
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.clientX, e.clientY);
+    }
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mouseup', endDraw);
+    canvas.addEventListener('mousemove', draw);
+  </script>
+</body>
+
+</html>
